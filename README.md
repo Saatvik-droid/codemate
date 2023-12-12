@@ -12,7 +12,7 @@
 
 ##### `explain`
 
-Run `codemate explain <relative filename>` to get a PaLM generated functionality summary.
+Run `codemate explain <filename>` to get a PaLM generated functionality summary.
 For example, `codemate explain backend/setup.py`
 
 ### Demo
