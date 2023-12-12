@@ -17,6 +17,8 @@ For example, `codemate explain backend/setup.py`
 
 ### Demo
 
+https://github.com/Saatvik-droid/codemate/assets/55750489/286cb62f-d959-4f23-8d63-0383819cf9bd
+
 ### Future usage
 
 We can add code completion through the same PaLM API by providing part of the file and requesting code completion or queries through the terminal.
