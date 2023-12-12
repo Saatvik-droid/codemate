@@ -4,13 +4,23 @@ import { program } from "commander";
 import chalk from "chalk";
 import fs from "fs/promises";
 import path from "path";
-import "dotenv/config";
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import { config as dotenvConfig } from "dotenv";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenvConfig({ path: `${__dirname}/.env` });
+
 import { DiscussServiceClient } from "@google-ai/generativelanguage";
 import { GoogleAuth } from "google-auth-library";
 
 const getPalmResponse = async (data) => {
   const MODEL_NAME = "models/chat-bison-001";
   const API_KEY = process.env.API_KEY;
+  console.log(API_KEY);
 
   const client = new DiscussServiceClient({
     authClient: new GoogleAuth().fromAPIKey(API_KEY),
@@ -47,11 +57,7 @@ const explain = async (file) => {
     const res = await getPalmResponse(data);
     console.log(`${chalk.yellow("Response:")}\n${chalk.white(res)}`);
   } catch (err) {
-    if (err.code === "ENOENT") {
-      console.log(chalk.redBright(`File not found at ${filePath}`));
-    } else {
-      console.log(chalk.redBright(`Error reading the file: ${err}`));
-    }
+    chalk.redBright(`Error: ${err}`);
   }
 };
 
